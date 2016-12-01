@@ -33,9 +33,33 @@ if(isset($_POST['URL'])){
 
   }
 
-  //Indicate encoding? Parse page
-	$html = file_get_contents($_POST["URL"]);
-  echo $html;
+
+
+  $html = file_get_html($_POST['URL']);
+  $scheme = $host = parse_url($_POST['URL'], PHP_URL_SCHEME);
+  $host = parse_url($_POST['URL'], PHP_URL_HOST);
+
+    function my_callback($element) {
+        
+        $scheme = $host = parse_url($_POST['URL'], PHP_URL_SCHEME);
+        $host = parse_url($_POST['URL'], PHP_URL_HOST);
+
+        // Hide all <b> tags 
+        if ($element->tag=='a'){
+            $curr_link_str = $element->href;
+        
+            //regex to see if absoulte or relative link. Referenced stack overflow: http://stackoverflow.com/questions/12013268/php-regex-to-determine-relative-or-absolute-path
+            if( !((substr($curr_link_str, 0, 7) == 'http://') || (substr($curr_link_str, 0, 8) == 'https://')) ){
+              $element->href = $scheme. "://" . $host . $element->href;
+            } 
+        }
+
+    }
+    // Register the callback function with it's function name
+    $html->set_callback('my_callback');
+
+
+    echo $html;
 }
 
 ?>
@@ -75,7 +99,7 @@ if(isset($_POST['URL'])){
 
  <!-- foundation required function call -->
   <script>
-  
+
     $(document).foundation();
   </script>
 </body>

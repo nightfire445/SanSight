@@ -21,8 +21,11 @@
     echo "Error: " . $e->getMessage();
   }
 
-  if (isset($_POST['speak']) ){
-    echo "spoke";
+  if (isset($_POST['save']) ){
+    echo "<";
+  }
+  else if (isset($_POST['speak'])){
+
   }
 
 ?>
@@ -37,13 +40,13 @@
 
   <body>
     <?php menu_builder(); ?>
-    <form class = 'medium-6 columns' action="options.php" method="post" id="options-form">
+    <form class = 'medium-6 columns' action="options.php" method="post" id="options-form" >
     <select name = "voice">
     </select>
     <input type="text" placeholder="Text to speak" class = "txt" name="txt" id="txt" />
     <input id="preview" type="submit" class="button expanded" name="speak" value="Preview" /> 
     <!-- Store in settings locally and submit to the server (Dont need to make the request if its in session) -->
-    <input id="preview" type="submit" class="button expanded" name="speak" value="Save Settings" />
+    <input id="preview" type="submit" class="button expanded" name="save" value="Save Settings" />
 
 
     <input type= 'range' value='127' name= 'pitch' id  ="pitch" min= '0' max= '255'><label for 'pitch-value'>Pitch</label></input>

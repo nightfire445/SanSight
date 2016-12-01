@@ -32,6 +32,14 @@
                   FOREIGN KEY(username) REFERENCES users(username)
                 ) COLLATE utf8_unicode_ci;";
 
+    /*$create_settings = "CREATE TABLE IF NOT EXISTS settings (
+                  username varchar(50),
+                  url varchar(100) NOT NULL,
+                  `date` date NOT NULL, 
+                  id int(99) PRIMARY KEY AUTO_INCREMENT,
+                  FOREIGN KEY(username) REFERENCES users(username)
+                ) COLLATE utf8_unicode_ci;";
+    */
   $result_1 = $dbconn->query($create_users);
 	$result_2 = $dbconn->query($create_history);
 
