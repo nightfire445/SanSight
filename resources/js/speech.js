@@ -1,5 +1,5 @@
 window.onload = function(e) {
-
+    //Check for speech support
     if ('speechSynthesis' in window) {
 
     var speechSynthesis = window.speechSynthesis;

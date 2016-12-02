@@ -1,19 +1,6 @@
+//Self contained widget to populate options.php , doesn't work correctly
 
 window.onload = function() {
-
-  //Enable speech support.
-  var context;
-  if (typeof AudioContext !== "undefined") {
-        context = new AudioContext();
-  } 
-  else if (typeof webkitAudioContext !== "undefined") {
-        context = new webkitAudioContext();
-  }
-  else {
-        throw new Error('AudioContext not supported. :(');
-  }
-
-
 
   var synth = window.speechSynthesis;
 
@@ -46,7 +33,7 @@ window.onload = function() {
   }
 
   populateVoiceList();
-  
+
   if (speechSynthesis.onvoiceschanged !== undefined) {
     speechSynthesis.onvoiceschanged = populateVoiceList;
   }
