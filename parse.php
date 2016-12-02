@@ -27,40 +27,55 @@ if(isset($_POST['URL'])){
       echo "Error: " . $e->getMessage();
     }
 
+    $today = date("Y-m-d");
     //Add url to history
-    $history_insert = $dbconn->prepare("INSERT INTO `history` (`username`,`url`) VALUES (:username, :URL)");
-    $history_insert->execute( array(':username' => $_SESSION['username'], ':URL' => $_POST['URL']) );
+
+    /*
+
+    'INSERT INTO history
+    (username, url)
+    SELECT ":username", ":URL"
+    FROM dual
+    WHERE NOT EXISTS (SELECT *
+    FROM history
+    WHERE history.url = ":URL" && history.username = ":username")'
+
+    Doesn't Work
+    Error:
+    Cannot add or update a child row: a foreign key constraint fails (`sanssight`.`history`, CONSTRAINT `history_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`))
+
+    Why?? :username is defined...
+    
+
+    VS 
+
+    
+    'INSERT INTO history
+    (username, url)
+    SELECT "test", "http://www.google.com"
+    FROM dual
+    WHERE NOT EXISTS (SELECT *
+    FROM history
+    WHERE history.url = "http://www.google.com" && history.username = "test")'
+
+    Works
+
+
+    "INSERT INTO `history` (`username`,`url`, `date`) VALUES (:username, :URL, :today)"
+    */
+
+    $history_insert = $dbconn->prepare(  'INSERT INTO `history` (`username`,`url`, `date`) VALUES (:username, :URL, :today)');
+
+    $insert =  $history_insert->execute( array(':username' => $_SESSION['username'], ':URL' => $_POST['URL'], ':today' => $today) );
     print_r($history_insert->errorInfo());
 
+    if(!$insert){
+    $history_update = $dbconn->prepare("UPDATE `history` SET (`date` = :today) WHERE (username = :username && url = :URL)");
+    $history_update->execute( array(':username' => $_SESSION['username'], ':URL' => $_POST['URL'], ':today' => $today) );
+     print_r($history_update->errorInfo());
+    }
   }
 
-
-
-  $html = file_get_html($_POST['URL']);
-  $scheme = $host = parse_url($_POST['URL'], PHP_URL_SCHEME);
-  $host = parse_url($_POST['URL'], PHP_URL_HOST);
-
-    function my_callback($element) {
-        
-        $scheme = $host = parse_url($_POST['URL'], PHP_URL_SCHEME);
-        $host = parse_url($_POST['URL'], PHP_URL_HOST);
-
-        // Hide all <b> tags 
-        if ($element->tag=='a'){
-            $curr_link_str = $element->href;
-        
-            //regex to see if absoulte or relative link. Referenced stack overflow: http://stackoverflow.com/questions/12013268/php-regex-to-determine-relative-or-absolute-path
-            if( !((substr($curr_link_str, 0, 7) == 'http://') || (substr($curr_link_str, 0, 8) == 'https://')) ){
-              $element->href = $scheme. "://" . $host . $element->href;
-            } 
-        }
-
-    }
-    // Register the callback function with it's function name
-    $html->set_callback('my_callback');
-
-
-    echo $html;
 }
 
 ?>
@@ -81,7 +96,14 @@ if(isset($_POST['URL'])){
 
 <body>
 <!-- from site_builder_functions.php -->
+<div id="exPage">
+      
+</div>
+
   <?php menu_builder(); ?>
+  <script>var $_POST = <?php echo !empty($_POST)?json_encode($_POST):'null';?>; </script>
+  <script src="./resources/js/parsepage.js"></script>
+    
 
    <form action="parse.php" method="post" id="parse-form"  class="medium-6 columns">
      <h1 class="title">URL</h1>
