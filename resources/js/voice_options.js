@@ -46,6 +46,7 @@ window.onload = function() {
   }
 
   populateVoiceList();
+  
   if (speechSynthesis.onvoiceschanged !== undefined) {
     speechSynthesis.onvoiceschanged = populateVoiceList;
   }

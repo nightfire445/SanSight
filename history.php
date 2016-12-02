@@ -59,7 +59,7 @@
       echo '<input type="radio" name="URL" id="url_input" value="'.$row['url'].'"></input>'. $row['url'] . "\t"; echo $row['date'] . "<br>"; 
     }
     //Echo out input submit, closing input, form, and insert script with foundation required function call
-    echo '<input id ="url_input_submit" type="submit" name="Parse" value="Submit" class="button expanded"></input></form><script> $(document).foundation();</script>'
+    echo '<input id ="url_input_submit" type="submit" name="Parse" value="Submit" class="button expanded"></input></form><script> $(document).foundation();</script>';
   }?>
   </section>     
 

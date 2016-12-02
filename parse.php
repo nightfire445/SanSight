@@ -14,11 +14,12 @@ if(isset($_POST['URL'])){
     $configs = include('config.php');
     try{
 
-      $host = $configs['host'];
-      $user =  $configs['username'];
-      $pass = $configs['password'];
-      $dbname = $configs['database'];
-      
+
+      $host = $config['DB_HOST'];
+      $user = $config['DB_USERNAME'];
+      $pass = $config['DB_PASSWORD'];
+      $dbname = $config['DB_NAME'];
+        
       $dbconn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
     }
 
@@ -29,7 +30,7 @@ if(isset($_POST['URL'])){
     //Add url to history
     $history_insert = $dbconn->prepare("INSERT INTO `history` (`username`,`url`) VALUES (:username, :URL)");
     $history_insert->execute( array(':username' => $_SESSION['username'], ':URL' => $_POST['URL']) );
-    
+    print_r($history_insert->errorInfo());
 
   }
 
@@ -74,8 +75,6 @@ if(isset($_POST['URL'])){
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sansight - Parse</title>
 
-
-  <?php if(isset($_POST['URL'])){ echo "<script src='./recurse.js'>";echo "</script>"; } ?>
 </head>
 
  <!-- body content here -->

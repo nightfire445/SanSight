@@ -22,7 +22,22 @@
     echo "Error: " . $e->getMessage();
   }
 
-  if (isset($_POST['login']) && isset($_POST['password'])){
+  
+
+  if(isset($_POST['register'])){
+    echo "registering";
+    //Hash the Salt and Raw Pass
+    $raw_pass = $_POST['password'];
+    $salt = mcrypt_create_iv(22, MCRYPT_DEV_URANDOM);
+    $hashed_salt = hash('sha256', $salt . $raw_pass);
+
+
+    $insert_user = $dbconn->prepare("INSERT INTO `users` (`username`, `salt`, `password`)  VALUES (:username, :salt, :password)");
+    $insert_user->execute(array(':username' => $_POST['username'], ':salt' => $salt, ':password' => $hashed_salt ));
+    
+  }
+
+  if (isset($_POST['login']) || isset($_POST['register']) && isset($_POST['password'])){
     //Obtain User's Salt
     $select_salt = $dbconn->prepare("SELECT salt FROM users WHERE username = :username");
     $select_salt->execute(array(':username' => $_POST['username']));
@@ -108,8 +123,9 @@
 
      
        
-       <input id="submit" type="submit" class="button expanded" name="login" value="Submit" />
-        <a id="register" class="button expanded" href="register.php">Register</a>
+       <input id="submit" type="submit" class="button expanded" name="login" value="Login" />
+       <input id="submit" type="submit" class="button expanded" name="register" value="Register" />
+  
    </form>
 
   
