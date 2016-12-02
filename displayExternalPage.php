@@ -39,7 +39,6 @@
     $html = $dom->saveHTML();
     
     echo $html;
-    echo "worked";
     
     
     

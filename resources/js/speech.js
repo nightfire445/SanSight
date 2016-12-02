@@ -13,7 +13,7 @@ function speech_onFocus(e) {
 
       }
       if(e.target.tagName == "INPUT"){
-        speech = new SpeechSynthesisUtterance("Input type " + e.target.type + ", " + e.target.textContent);
+        speech = new SpeechSynthesisUtterance("Input type " + e.target.type + ", " + e.target.value +", " +e.target.textContent);
       }
 
       if(e.target.tagName == "IMG"){
