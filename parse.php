@@ -103,6 +103,7 @@ if(isset($_POST['URL'])){
   <?php menu_builder(); ?>
   <script>var $_POST = <?php echo !empty($_POST)?json_encode($_POST):'null';?>; </script>
   <script src="./resources/js/parsepage.js"></script>
+  <script src='./resources/js/speech.js'></script>
     
 
    <form action="parse.php" method="post" id="parse-form"  class="medium-6 columns">

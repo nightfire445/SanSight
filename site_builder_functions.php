@@ -17,7 +17,7 @@ function menu_builder(){
   	echo "</a></li></div></menu></div>";
   	//Close include scripts to apply foundation to the newly echoed menu (doesn't apply without something here, not sure what included all to be safe).
     echo"<link rel='stylesheet' href='https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script src='https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js'></script><script src='./resources/js/speech.js'></script><script>$(document).foundation();</script>";
-    
+    echo '<script src=".\resources\js\speech.js"></script>';
          
 
 }

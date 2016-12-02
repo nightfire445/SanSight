@@ -1,21 +1,6 @@
-window.onload = function(e) {
-    //Check for speech support
-    if ('speechSynthesis' in window) {
+//Included outside so parsepage can access this function
 
-    var speechSynthesis = window.speechSynthesis;
-
-
-  //Widget controls
-  /*
-    document.addEventListener('keydown', function (e) {
-          if(speechSynthesis.speaking){
-
-          speech_stop();
-      
-          }
-        }, false);
-  */
-    function speech_onFocus(e) {
+function speech_onFocus(e) {
      
       console.log(e.target.tagName);
       var speech = new SpeechSynthesisUtterance();
@@ -55,21 +40,38 @@ window.onload = function(e) {
     }
 
 
+window.onload = function(e) {
+    //Check for speech support
+    if ('speechSynthesis' in window) {
+
+    var speechSynthesis = window.speechSynthesis;
+
+
+  //Widget controls
+  /*
+    document.addEventListener('keydown', function (e) {
+          if(speechSynthesis.speaking){
+
+          speech_stop();
+      
+          }
+        }, false);
+  */
+    
+
     var all = document.getElementsByTagName("*");
 
     for (var i=0, max=all.length; i < max; i++) {
          // Make sure these elements are focusable
          
-        if(all[i].tagName == "A" || all[i].tagName == "INPUT" || all[i].tagName == "IMG" || all[i].tagName == "P"){
+        if(all[i].tagName == "A" || all[i].tagName == "INPUT" || all[i].tagName == "IMG" || all[i].tagName == "P" || all[i].tagName == "IFRAME"){
            all[i].setAttribute("tabIndex", 0);
            all[i].addEventListener("focus", speech_onFocus);
         }
-        
-        
-         
-         
     }
 
+ 
+      
     function speech_stop(){
       //Stops all speech utterences
       speechSynthesis.cancel()
