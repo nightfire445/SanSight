@@ -3,6 +3,6 @@
 $config = array(
 	'DB_HOST'	  => 'localhost',
 	'DB_USERNAME' => 'root',
-	'DB_PASSWORD' => '',
+	'DB_PASSWORD' => 'ColonieBrownie779',
 	'DB_NAME'	  => 'sansSight'
 );
