@@ -14,6 +14,7 @@ $( document ).ready(function() {
         $iframe.on('load', function()
         {
                 var iframe = document.getElementsByTagName("iframe")[0];
+
                 var all = $(iframe.contentDocument).find("*");
                 console.log(all);
                 for (var i=0, max=all.length; i < max; i++) {
@@ -25,12 +26,21 @@ $( document ).ready(function() {
                     }
                 }
 
+
+                document.getElementsByTagName("iframe")[0].contentWindow.document.onkeyup  = function(e){
+
+                    if(e.keyCode == 16 ){
+                        speech_stop();
+                        console.log("should stop");
+                    }
+                }
+
         });
 
         $iframe.appendTo("#exPage");
         
         $iframe.attr('src', './displayExternalPage.php?URL=' + $_POST["URL"]);
-        	
+        
         
          
     });

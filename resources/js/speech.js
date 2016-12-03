@@ -1,4 +1,13 @@
-//Included outside so parsepage can access this function
+//Included outside so parsepage can access these functions
+
+
+      
+    function speech_stop(){
+      //Stops all speech utterences
+      speechSynthesis.cancel()
+
+    }
+
 
 function speech_onFocus(e) {
      
@@ -48,6 +57,14 @@ window.onload = function(e) {
 
 
   //Widget controls
+
+  document.body.onkeyup = function(e){
+
+    if(e.keyCode == 16 ){
+        speech_stop();
+    }
+}
+
   /*
     document.addEventListener('keydown', function (e) {
           if(speechSynthesis.speaking){
@@ -78,14 +95,6 @@ window.onload = function(e) {
     }
 
     
-
- 
-      
-    function speech_stop(){
-      //Stops all speech utterences
-      speechSynthesis.cancel()
-
-    }
 
     function speech_pause(){
       //resumes if paused, pauses if speaking.
