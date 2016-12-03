@@ -67,12 +67,12 @@ if(isset($_POST['URL'])){
     $history_insert = $dbconn->prepare(  'INSERT INTO `history` (`username`,`url`, `date`) VALUES (:username, :URL, :today)');
 
     $insert =  $history_insert->execute( array(':username' => $_SESSION['username'], ':URL' => $_POST['URL'], ':today' => $today) );
-    print_r($history_insert->errorInfo());
+    //print_r($history_insert->errorInfo());
 
     if(!$insert){
     $history_update = $dbconn->prepare("UPDATE `history` SET (`date` = :today) WHERE (username = :username && url = :URL)");
     $history_update->execute( array(':username' => $_SESSION['username'], ':URL' => $_POST['URL'], ':today' => $today) );
-     print_r($history_update->errorInfo());
+     //print_r($history_update->errorInfo());
     }
   }
 

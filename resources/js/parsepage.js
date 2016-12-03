@@ -27,12 +27,23 @@ $( document ).ready(function() {
                 }
 
 
-                document.getElementsByTagName("iframe")[0].contentWindow.document.onkeyup  = function(e){
 
+            //Iframe Widget controls
+                document.getElementsByTagName("iframe")[0].contentWindow.document.onkeyup  = function(e){
+                    //Shift, stop speech
                     if(e.keyCode == 16 ){
                         speech_stop();
-                        console.log("should stop");
                     }
+
+                     //ctrl, replay focused element
+                    if(e.keyCode == 17){
+                        $focused = $(':focus');
+                        $focused.blur(); 
+                        $focused.focus();
+
+                    }
+
+                    
                 }
 
         });

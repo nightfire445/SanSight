@@ -59,9 +59,17 @@ window.onload = function(e) {
   //Widget controls
 
   document.body.onkeyup = function(e){
-
+    //Shift, stop speech
     if(e.keyCode == 16 ){
         speech_stop();
+    }
+
+    //ctrl, replay focused element
+    if(e.keyCode == 17){
+        $focused = $(':focus');
+        $focused.blur(); 
+        $focused.focus();
+
     }
 }
 
