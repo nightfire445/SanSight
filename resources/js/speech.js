@@ -11,7 +11,7 @@
 
 function speech_onFocus(e) {
      
-      console.log(e.target.tagName);
+      //console.log(e.target.tagName);
       var speech = new SpeechSynthesisUtterance();
 
       //Rendering cases based on tag
@@ -98,12 +98,19 @@ window.onload = function(e) {
          // Make sure these elements are focusable
          
         if(all[i].tagName == "A" || all[i].tagName == "INPUT" || all[i].tagName == "IMG" || all[i].tagName == "IFRAME"){
-           all[i].setAttribute("tabIndex", 0);
+
+          //Keep elements tab index value if it has it
+          if(!all[i].hasAttribute("tabIndex")){
+             all[i].setAttribute("tabIndex", 0);
+          }
+          
            all[i].addEventListener("focus", speech_onFocus);
         }
 
         if(all[i].tagName == "P"){
+          //giv <p> higher priorty for tabbing for quick access
           all[i].setAttribute("tabIndex", 2);
+
           all[i].addEventListener("focus", speech_onFocus);
         }
     

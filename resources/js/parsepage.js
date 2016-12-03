@@ -16,7 +16,7 @@ $( document ).ready(function() {
                 var iframe = document.getElementsByTagName("iframe")[0];
 
                 var all = $(iframe.contentDocument).find("*");
-                console.log(all);
+                //console.log(all);
                 for (var i=0, max=all.length; i < max; i++) {
                  // Make sure these elements are focusable
                  
