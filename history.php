@@ -53,9 +53,10 @@
   <?php if(isset($_SESSION['username']) ):{ 
    //Echo out form to hold history-->
       echo '<form action="parse.php" method="post" class="medium-6 columns" id="login-form">';
-    //<br> should be done in css not php 
+    
     //Echo out their history as radio buttons -->
     foreach($res as $row) {
+      //<br> should be done in css not php 
       echo '<input type="radio" name="URL" id="url_input" value="'.$row['url'].'"></input>'. $row['url'] . "\t"; echo $row['date'] . "<br>"; 
     }
     //Echo out input submit, closing input, form, and insert script with foundation required function call

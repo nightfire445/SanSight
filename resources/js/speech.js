@@ -60,18 +60,26 @@ window.onload = function(e) {
 
   document.body.onkeyup = function(e){
     //Shift, stop speech
-    if(e.keyCode == 16 ){
+    if(e.shiftKey && e.keyCode == 9) { 
+    //shift was down when tab was pressed
+    }
+
+    //Shift, stop speech
+    else if(e.keyCode == 16 ){
         speech_stop();
     }
 
-    //ctrl, replay focused element
-    if(e.keyCode == 17){
+    //, move out of iframe
+
+
+     //ctrl, replay focused element
+    else if(e.keyCode == 17){
         $focused = $(':focus');
         $focused.blur(); 
         $focused.focus();
 
     }
-}
+  }
 
   /*
     document.addEventListener('keydown', function (e) {

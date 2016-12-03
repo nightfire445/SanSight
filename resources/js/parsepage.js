@@ -30,13 +30,20 @@ $( document ).ready(function() {
 
             //Iframe Widget controls
                 document.getElementsByTagName("iframe")[0].contentWindow.document.onkeyup  = function(e){
+                    
+                    if(e.shiftKey && e.keyCode == 9) { 
+                    //shift was down when tab was pressed
+                    }
+
                     //Shift, stop speech
-                    if(e.keyCode == 16 ){
+                    else if(e.keyCode == 16 ){
                         speech_stop();
                     }
 
+
+
                      //ctrl, replay focused element
-                    if(e.keyCode == 17){
+                    else if(e.keyCode == 17){
                         $focused = $(':focus');
                         $focused.blur(); 
                         $focused.focus();
