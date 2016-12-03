@@ -23,8 +23,12 @@
   }
 
   
+  if(isset($_POST['password']) &&  $_POST['password'] == "" || isset($_POST['username']) && $_POST['username'] == "" ){
+     $msg = "Username and password must not be left blank.";
 
-  if(isset($_POST['register'])){
+}
+
+  if(isset($_POST['register']) && $_POST['username'] != "" && $_POST['password'] != ""){
     echo "registering";
     //Hash the Salt and Raw Pass
     $raw_pass = $_POST['password'];
@@ -37,7 +41,7 @@
     
   }
 
-  if (isset($_POST['login']) || isset($_POST['register']) && isset($_POST['password'])){
+  if (isset($_POST['login']) || isset($_POST['register']) && isset($_POST['password'])  && isset($_POST['username']) ){
     //Obtain User's Salt
     $select_salt = $dbconn->prepare("SELECT salt FROM users WHERE username = :username");
     $select_salt->execute(array(':username' => $_POST['username']));

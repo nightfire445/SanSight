@@ -1,4 +1,13 @@
-//Included outside so parsepage can access this function
+//Included outside so parsepage can access these functions
+
+
+      
+    function speech_stop(){
+      //Stops all speech utterences
+      speechSynthesis.cancel()
+
+    }
+
 
 function speech_onFocus(e) {
      
@@ -48,6 +57,22 @@ window.onload = function(e) {
 
 
   //Widget controls
+
+  document.body.onkeyup = function(e){
+    //Shift, stop speech
+    if(e.keyCode == 16 ){
+        speech_stop();
+    }
+
+    //ctrl, replay focused element
+    if(e.keyCode == 17){
+        $focused = $(':focus');
+        $focused.blur(); 
+        $focused.focus();
+
+    }
+}
+
   /*
     document.addEventListener('keydown', function (e) {
           if(speechSynthesis.speaking){
@@ -64,19 +89,20 @@ window.onload = function(e) {
     for (var i=0, max=all.length; i < max; i++) {
          // Make sure these elements are focusable
          
-        if(all[i].tagName == "A" || all[i].tagName == "INPUT" || all[i].tagName == "IMG" || all[i].tagName == "P" || all[i].tagName == "IFRAME"){
+        if(all[i].tagName == "A" || all[i].tagName == "INPUT" || all[i].tagName == "IMG" || all[i].tagName == "IFRAME"){
            all[i].setAttribute("tabIndex", 0);
            all[i].addEventListener("focus", speech_onFocus);
         }
+
+        if(all[i].tagName == "P"){
+          all[i].setAttribute("tabIndex", 2);
+          all[i].addEventListener("focus", speech_onFocus);
+        }
+    
+
     }
 
- 
-      
-    function speech_stop(){
-      //Stops all speech utterences
-      speechSynthesis.cancel()
-
-    }
+    
 
     function speech_pause(){
       //resumes if paused, pauses if speaking.
