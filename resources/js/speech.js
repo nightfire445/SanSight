@@ -64,11 +64,20 @@ window.onload = function(e) {
     for (var i=0, max=all.length; i < max; i++) {
          // Make sure these elements are focusable
          
-        if(all[i].tagName == "A" || all[i].tagName == "INPUT" || all[i].tagName == "IMG" || all[i].tagName == "P" || all[i].tagName == "IFRAME"){
+        if(all[i].tagName == "A" || all[i].tagName == "INPUT" || all[i].tagName == "IMG" || all[i].tagName == "IFRAME"){
            all[i].setAttribute("tabIndex", 0);
            all[i].addEventListener("focus", speech_onFocus);
         }
+
+        if(all[i].tagName == "P"){
+          all[i].setAttribute("tabIndex", 2);
+          all[i].addEventListener("focus", speech_onFocus);
+        }
+    
+
     }
+
+    
 
  
       
