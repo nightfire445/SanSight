@@ -84,14 +84,14 @@
     foreach ($hlinks as $hlink) {
       
       //check if link is a absoulte path or relative.
-      $curr_img_str = $image->getAttribute('src');
+      $curr_hlink_str = $hlink->getAttribute('href');
       
       //regex to see if absoulte or relative link. 
-      if( !( (substr($curr_img_str, 0, 7) == 'http://') || (substr($curr_img_str, 0, 8) == 'https://') || (substr($curr_img_str, 0, 2) == '//') )){
+      if( !( (substr($curr_hlink_str, 0, 7) == 'http://') || (substr($curr_hlink_str, 0, 8) == 'https://') || (substr($curr_hlink_str, 0, 2) == '//') )){
 
-       //@TODO set href too
+       
 
-        $image->setAttribute('src',  $scheme. "://" . $host . $curr_img_str );  
+        $hlink->setAttribute('href', './displayExternalPage.php?URL=' . $scheme. "://" . $host . $curr_hlink_str );  
       }
       
     }
