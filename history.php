@@ -45,8 +45,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     
-    <script>var $_POST = <?php echo !empty($_POST)?json_encode($_POST):'null';?>; </script>
-    <script src="./resources/js/parsepage.js"></script>
+    <script>var $_SESSION = <?php echo !empty($_SESSION)?json_encode($_SESSION):'null';?>;</script>
     <script src='./resources/js/speech.js'></script>
     
   </head>
@@ -97,7 +96,7 @@
         echo '<input type="radio" name="URL" id="url_input" value="'.$row['url'].'"></input>'. $row['url'] . "\t"; echo $row['date'] . "<br>"; 
       }
       //Echo out input submit, closing input, form, and insert script with foundation required function call
-      echo '<input id ="url_input_submit" type="submit" name="Parse" value="Submit" class="btn btn-secondary"></input></form><script> $(document).foundation();</script>';
+      echo '<input id ="url_input_submit" type="submit" name="Parse" value="Submit" class="btn btn-secondary"></input></form>';
     }?>
     </section>     
 

@@ -22,10 +22,9 @@
   }
 
   if (isset($_POST['save']) ){
-    
-  }
-  else if (isset($_POST['speak'])){
-
+    $_SESSION['pitch'] = $_POST['pitch'];
+    $_SESSION['rate'] = $_POST['rate'];
+    $_SESSION['voice'] = $_POST['voice'];
   }
 
 ?>
@@ -41,11 +40,13 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-
-    <script>var $_POST = <?php echo !empty($_POST)?json_encode($_POST):'null';?>; </script>
-    <script src="./resources/js/parsepage.js"></script>
+    <script>var $_POST = <?php echo !empty($_POST)?json_encode($_POST):'null';?>; var $_SESSION = <?php echo !empty($_SESSION)?json_encode($_SESSION):'null';?>;</script>
+    <script src="./resources/js/voice_options.js"></script>
     <script src='./resources/js/speech.js'></script>
-        
+
+    
+
+
   </head>
   <body>
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
@@ -120,7 +121,6 @@
     </form>
     </div>
 
-    <script src=".\resources\js\voice_options.js"></script>
 
     <footer>
     </footer>

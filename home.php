@@ -92,7 +92,7 @@ if(isset($_POST['URL'])){
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     
-    <script>var $_POST = <?php echo !empty($_POST)?json_encode($_POST):'null';?>; </script>
+    <script>var $_POST = <?php echo !empty($_POST)?json_encode($_POST):'null';?>; var $_SESSION = <?php echo !empty($_SESSION)?json_encode($_SESSION):'null';?>;</script>
     <script src="./resources/js/parsepage.js"></script>
     <script src='./resources/js/speech.js'></script>
     
