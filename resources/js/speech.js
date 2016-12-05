@@ -11,7 +11,7 @@
 
 function speech_onFocus(e) {
      
-      console.log(e.target.tagName);
+      //console.log(e.target.tagName);
       var speech = new SpeechSynthesisUtterance();
 
       //Rendering cases based on tag
@@ -60,18 +60,26 @@ window.onload = function(e) {
 
   document.body.onkeyup = function(e){
     //Shift, stop speech
-    if(e.keyCode == 16 ){
+    if(e.shiftKey && e.keyCode == 9) { 
+    //shift was down when tab was pressed
+    }
+
+    //Shift, stop speech
+    else if(e.keyCode == 16 ){
         speech_stop();
     }
 
-    //ctrl, replay focused element
-    if(e.keyCode == 17){
+    //, move out of iframe
+
+
+     //ctrl, replay focused element
+    else if(e.keyCode == 17){
         $focused = $(':focus');
         $focused.blur(); 
         $focused.focus();
 
     }
-}
+  }
 
   /*
     document.addEventListener('keydown', function (e) {
@@ -90,12 +98,19 @@ window.onload = function(e) {
          // Make sure these elements are focusable
          
         if(all[i].tagName == "A" || all[i].tagName == "INPUT" || all[i].tagName == "IMG" || all[i].tagName == "IFRAME"){
-           all[i].setAttribute("tabIndex", 0);
+
+          //Keep elements tab index value if it has it
+          if(!all[i].hasAttribute("tabIndex")){
+             all[i].setAttribute("tabIndex", 0);
+          }
+          
            all[i].addEventListener("focus", speech_onFocus);
         }
 
         if(all[i].tagName == "P"){
+          //giv <p> higher priorty for tabbing for quick access
           all[i].setAttribute("tabIndex", 2);
+
           all[i].addEventListener("focus", speech_onFocus);
         }
     

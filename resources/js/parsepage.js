@@ -16,7 +16,7 @@ $( document ).ready(function() {
                 var iframe = document.getElementsByTagName("iframe")[0];
 
                 var all = $(iframe.contentDocument).find("*");
-                console.log(all);
+                //console.log(all);
                 for (var i=0, max=all.length; i < max; i++) {
                  // Make sure these elements are focusable
                  
@@ -30,13 +30,20 @@ $( document ).ready(function() {
 
             //Iframe Widget controls
                 document.getElementsByTagName("iframe")[0].contentWindow.document.onkeyup  = function(e){
+                    
+                    if(e.shiftKey && e.keyCode == 9) { 
+                    //shift was down when tab was pressed
+                    }
+
                     //Shift, stop speech
-                    if(e.keyCode == 16 ){
+                    else if(e.keyCode == 16 ){
                         speech_stop();
                     }
 
+
+
                      //ctrl, replay focused element
-                    if(e.keyCode == 17){
+                    else if(e.keyCode == 17){
                         $focused = $(':focus');
                         $focused.blur(); 
                         $focused.focus();

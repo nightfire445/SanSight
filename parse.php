@@ -101,6 +101,7 @@ if(isset($_POST['URL'])){
 </div>
 
   <?php menu_builder(); ?>
+  <!-- Following script allows parsepage to grab the URL -->
   <script>var $_POST = <?php echo !empty($_POST)?json_encode($_POST):'null';?>; </script>
   <script src="./resources/js/parsepage.js"></script>
   <script src='./resources/js/speech.js'></script>
