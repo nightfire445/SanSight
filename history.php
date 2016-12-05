@@ -61,6 +61,7 @@
                 <a class="navbar-brand page-scroll" href="home.php">SANSIGHT</a>
                 <a class="navbar-brand page-scroll" href="./history.php">  History  </a>
                 <a class="navbar-brand page-scroll" href="./options.php">  Options  </a>
+                <a class="navbar-brand page-scroll" href="#history-form">  History Form  </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -89,7 +90,7 @@
     <section style="margin-left: 25px;"> 
     <?php if(isset($_SESSION['username']) ):{ 
      //Echo out form to hold history-->
-        echo '<form action="home.php" method="post" class="medium-6 columns" id="login-form">';
+        echo '<form action="home.php" method="post" class="medium-6 columns" id="history-form">';
       //<br> should be done in css not php 
       //Echo out their history as radio buttons -->
       foreach($res as $row) {

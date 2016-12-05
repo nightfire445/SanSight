@@ -109,6 +109,7 @@ if(isset($_POST['URL'])){
                 <a class="navbar-brand page-scroll" href="./home.php">SANSIGHT</a>
                 <a class="navbar-brand page-scroll" href="./history.php">  History  </a>
                 <a class="navbar-brand page-scroll" href="./options.php">  Options  </a>
+                <a class="navbar-brand page-scroll" href="#exiframe">  External Content  </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
