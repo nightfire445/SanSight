@@ -1,0 +1,58 @@
+body{
+	font-family: 'Lato', sans-serif;
+	padding-top: 70px;
+}
+a{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#logo{
+	float: left;
+	position: relative;
+	top: 7px;
+	margin-right: 10px;
+}
+#mainNav{
+	background-color: #000000;
+}
+#sign-in{
+	margin-right: 10px;
+}
+#sidebar-wrapper{
+	float: left;
+	width: 20%;
+	border-right: solid 1px;
+	padding-right: 10px;
+}
+li{
+	list-style-type: none;
+}
+#main{
+	float: left;
+	width: 60%;
+}
+#search-bar{
+	width: 125%;
+}
+iframe{
+	width: 75%;
+	margin: 20px;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  background-color: #000000;
+  color: #FFFFFF;
+  text-align: center;
+}
+#main{
+  margin-left: 20px;
+}
+
+
+.optionsRow{
+	margin: 30px;
+	width: 30% !important;
+}

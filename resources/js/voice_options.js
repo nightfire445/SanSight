@@ -1,4 +1,6 @@
-//Self contained widget to populate options.php , doesn't work correctly
+//Self contained widget to populate options.php.
+
+//Referenced: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis#Examples
 
 window.onload = function() {
 
