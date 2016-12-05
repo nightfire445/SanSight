@@ -30,8 +30,14 @@ function speech_onFocus(e) {
         speech = new SpeechSynthesisUtterance("Image " + e.target.alt);
       }
 
+      if(e.target.tagName == "SELECT"){
+        speech = new SpeechSynthesisUtterance("Select " + e.target.options[ e.target.selectedIndex ].value);
+      }
+
       console.log($_SESSION);
-     
+      var voices = window.speechSynthesis.getVoices();
+
+
       //Speak at fast speed; "Earcon"
       if($_SESSION['rate']){
         
@@ -78,7 +84,7 @@ function speech_onFocus(e) {
 
       if($_SESSION['voice']){
         /*
-        var voices = window.speechSynthesis.getVoices();
+       
         for(i = 0; i < voices.length ; i++) {
      
           if(voices[i].name === $_SESSION['voice']) {
@@ -159,7 +165,7 @@ function speechOnload(e) {
     for (var i=0, max=all.length; i < max; i++) {
          // Make sure these elements are focusable
          
-        if(all[i].tagName == "A" || all[i].tagName == "INPUT" || all[i].tagName == "IMG" || all[i].tagName == "IFRAME"){
+        if(all[i].tagName == "A" || all[i].tagName == "INPUT" || all[i].tagName == "IMG" || all[i].tagName == "IFRAME" || all[i].tagName == "SELECT"){
 
           //Keep elements tab index value if it has it
           if(!all[i].hasAttribute("tabIndex")){
