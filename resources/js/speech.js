@@ -1,12 +1,13 @@
 //Included outside so parsepage can access these functions
 
 
-      
-    function speech_stop(){
-      //Stops all speech utterences
-      speechSynthesis.cancel()
 
-    }
+      
+function speech_stop(){
+      //Stops all speech utterences
+    speechSynthesis.cancel()
+
+}
 
 
 function speech_onFocus(e) {
@@ -29,11 +30,36 @@ function speech_onFocus(e) {
         speech = new SpeechSynthesisUtterance("Image " + e.target.alt);
       }
 
+      if(e.target.tagName == "SELECT"){
+        speech = new SpeechSynthesisUtterance("Select " + e.target.options[ e.target.selectedIndex ].value);
+      }
+
+      console.log($_SESSION);
+      var voices = window.speechSynthesis.getVoices();
 
 
       //Speak at fast speed; "Earcon"
-       speech.rate = 12;
-       speechSynthesis.speak(speech);   
+      if($_SESSION['rate']){
+        
+        speech.rate = 4 * $_SESSION['rate'];
+      }
+      else {
+        speech.rate = 12; 
+      }
+ 
+
+      if($_SESSION['pitch']){
+
+        speech.pitch = $_SESSION['pitch'];
+      }
+  
+      if($_SESSION['voice']){
+        speech.voice = $_SESSION['voice']; 
+
+      }
+
+
+      speechSynthesis.speak(speech);   
 
        // Any elements we dont want to apply "Earcon" to
       if(e.target.tagName == "P"){
@@ -43,13 +69,55 @@ function speech_onFocus(e) {
       
 
        //Speak at regular speed
-       speech.rate = 1; 
+      if($_SESSION['rate']){
+
+        speech.rate =  $_SESSION['rate'];
+      }
+      else {
+        speech.rate = 1; 
+      }
+
+      if($_SESSION['pitch']){
+
+        speech.pitch = $_SESSION['pitch'];
+      }
+
+      if($_SESSION['voice']){
+        /*
+       
+        for(i = 0; i < voices.length ; i++) {
+     
+          if(voices[i].name === $_SESSION['voice']) {
+             speech.voice = voices[i];
+          }
+        }    
+      */
+        speech.voice = $_SESSION['voice']; 
+      
+
+      }
+
        speechSynthesis.speak(speech);
 
     }
 
 
-window.onload = function(e) {
+//Referenced: http://www.htmlgoodies.com/beyond/javascript/article.php/3724571/Using-Multiple-JavaScript-Onload-Functions.htm
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      if (oldonload) {
+        oldonload();
+      }
+      func();
+    }
+  }
+}
+
+function speechOnload(e) {
     //Check for speech support
     if ('speechSynthesis' in window) {
 
@@ -97,7 +165,7 @@ window.onload = function(e) {
     for (var i=0, max=all.length; i < max; i++) {
          // Make sure these elements are focusable
          
-        if(all[i].tagName == "A" || all[i].tagName == "INPUT" || all[i].tagName == "IMG" || all[i].tagName == "IFRAME"){
+        if(all[i].tagName == "A" || all[i].tagName == "INPUT" || all[i].tagName == "IMG" || all[i].tagName == "IFRAME" || all[i].tagName == "SELECT"){
 
           //Keep elements tab index value if it has it
           if(!all[i].hasAttribute("tabIndex")){
@@ -130,9 +198,16 @@ window.onload = function(e) {
         }
 
     }
-      
+
+
+
   } 
   else {
       // speech synthesis isn't supported.
   }
+
+
 }
+
+
+addLoadEvent(speechOnload);

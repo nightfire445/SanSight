@@ -2,6 +2,9 @@
 
 //Referenced: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis#Examples
 
+
+
+
 window.onload = function() {
 
   var synth = window.speechSynthesis;
@@ -32,25 +35,52 @@ window.onload = function() {
       option.setAttribute('data-name', voices[i].name);
       voiceSelect.appendChild(option);
     }
+
   }
 
+ 
   populateVoiceList();
+
 
   if (speechSynthesis.onvoiceschanged !== undefined) {
     speechSynthesis.onvoiceschanged = populateVoiceList;
   }
 
-  inputForm.onsubmit = function(event) {
-  
-    var utterThis = new SpeechSynthesisUtterance(inputTxt.value);
-    var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+function preview() {
+    voices = window.speechSynthesis.getVoices();
+    console.log(voices);
+    var text;
+    if($_POST != null ){
+
+      text = $_POST["txt"];
+    }
+    else{
+      text = "";
+    }
+    var utterThis = new SpeechSynthesisUtterance(text);
+     if($_POST != null ){
+
+     var selectedOption = $_POST["voice"];
+    }
+    else{
+      var selectedOption = voices[0];
+    }
+    
     for(i = 0; i < voices.length ; i++) {
+
       if(voices[i].name === selectedOption) {
         utterThis.voice = voices[i];
       }
     }
-    utterThis.pitch = pitch.value;
-    utterThis.rate = rate.value;
+    if($_POST != null){
+      utterThis.pitch = $_POST['pitch'];
+      utterThis.rate = $_POST['rate'];
+
+    }
+    
     synth.speak(utterThis);
   }
+
+  preview();
+
 }
