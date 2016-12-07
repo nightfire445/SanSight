@@ -61,7 +61,7 @@
         $_SESSION['uid'] = $user['id'];
        
         $msg = 'Succesfully Logged in';
-        header('Location: index.php');
+        header('Location: home.php');
         exit();
     }
     else if(isset($_POST['login']) && isset($_POST['password'])){
@@ -83,29 +83,43 @@
 
 <head>
   <meta charset="utf-8">
-  <!-- If you delete this meta tag World War Z will become a reality -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sansight - Login</title>
-
-  <!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
-  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SANSIGHT</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <script>var $_POST = <?php echo !empty($_POST)?json_encode($_POST):'null';?>; </script>
+  <script src="./resources/js/parsepage.js"></script>
+  <script src='./resources/js/speech.js'></script>
 </head>
 
  <!-- body content here -->
 
 <body>
   <!-- from site_builder_functions.php -->
-  <?php menu_builder(); ?>
+  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span> Register/Log In <i class="fa fa-bars"></i>
+        </button>
+        <img src="sansightlogo.png" id="logo">
+        <a class="navbar-brand page-scroll" href="#">SANSIGHT</a>
+      </div>
 
+    </div>
+  </nav>
 
+  <div id="form-wrapper">
    <?php if (isset($_SESSION['username'])):?>
       <form action="login.php" method="post" id="logout-form" class="medium-6 columns">
         <section>
-        <h1 >Log Out</h1>
+        <h1>Log Out</h1>
         <?php if (isset($msg)) echo "<p class=\"err-msg\">$msg</p>"; $msg = NULL; ?>
         </section>
         <section>
-        <input id="submit" class="button expanded" type = "submit" name="logout" value="logout" />
+        <input id="submit" class="btn btn-secondary" type = "submit" name="logout" value="logout" />
         </section>
       </form>
 
@@ -115,23 +129,24 @@
      <?php if (isset($msg)) echo "<p class=\"err-msg\">$msg</p>"; $msg = NULL;?>
      <section >
         <label for="name">Username:
-          <input type="text" placeholder="Name" name="username" id="name" />
+          <input type="text" class="form-control" placeholder="Name" name="username" id="name" />
         </label>
      </section>
 
      <section >
          <label for="password">Password: 
-         <input type="password" name="password" id="password" />
+         <input class="form-control" type="password" name="password" id="password" />
          </label>
      </section>
 
-     
+     <div class="form-group">
+       <input id="submit" type="submit" class="btn btn-secondary" name="register" value="Register" />
+       <input id="submit" type="submit" class="btn btn-primary" name="login" value="Login" />
+     </div>
        
-       <input id="submit" type="submit" class="button expanded" name="login" value="Login" />
-       <input id="submit" type="submit" class="button expanded" name="register" value="Register" />
   
    </form>
-
+   </div>
   
 
 
