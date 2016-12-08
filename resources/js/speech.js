@@ -11,8 +11,8 @@ function speech_stop(){
 
 
 function speech_onFocus(e) {
-     
-      //console.log(e.target.tagName);
+      var flag;
+      speech_stop();
       var speech = new SpeechSynthesisUtterance();
 
       //Rendering cases based on tag
@@ -20,96 +20,106 @@ function speech_onFocus(e) {
       if(e.target.tagName == "A"){
 
         speech = new SpeechSynthesisUtterance("Link " + e.target.textContent);
+        flag = 0;
 
       }
       if(e.target.tagName == "INPUT"){
         speech = new SpeechSynthesisUtterance("Input type " + e.target.type + ", " + e.target.value +", " +e.target.textContent);
+        flag = 0;
       }
 
       if(e.target.tagName == "IMG"){
         speech = new SpeechSynthesisUtterance("Image " + e.target.alt);
+        flag = 0;
       }
 
       if(e.target.tagName == "SELECT"){
         speech = new SpeechSynthesisUtterance("Select " + e.target.options[ e.target.selectedIndex ].value);
+        flag = 0;
       }
 
       
       var voices = window.speechSynthesis.getVoices();
 
+      if(flag == 0){
 
-      //Speak at fast speed; "Earcon"
-      if($_SESSION != null && $_SESSION['rate']){
-        
-        speech.rate = 4 * $_SESSION['rate'];
-      }
-      else {
-        speech.rate = 12; 
-      }
- 
+        //Speak at fast speed; "Earcon"
+        if($_SESSION != null && $_SESSION['rate']){
+          
+          speech.rate = 4 * $_SESSION['rate'];
+        }
+        else {
+          speech.rate = 12; 
+        }
+   
 
-      if($_SESSION != null && $_SESSION['pitch']){
+        if($_SESSION != null && $_SESSION['pitch']){
 
-        speech.pitch = $_SESSION['pitch'];
-      }
-  
-      if($_SESSION != null && $_SESSION['voice']){
+          speech.pitch = $_SESSION['pitch'];
+        }
         
-        
-        speech.voice = $_SESSION['voice']; 
-        /*
-        for(i = 0; i < voices.length ; i++) {
-        
-          if(voices[i].name + ' (' + voices[i].lang + ')' === $_SESSION['voice']) {
-             speech.voice = voices[i];
+
+        if($_SESSION != null && $_SESSION['voice']){
+          
+          
+          for(i = 0; i < voices.length ; i++) {
+          
+            if(voices[i].name + ' (' + voices[i].lang + ')' === $_SESSION['voice']) {
+               speech.voice = voices[i];
              
-          }
-        }    
-        */
-      }
-      speech_stop();
+            }
+          }     
+        }
 
-      speechSynthesis.speak(speech);   
+        console.log(speech);
+        speechSynthesis.speak(speech);   
+
+      }
+
+        
 
        // Any elements we dont want to apply "Earcon" to
       if(e.target.tagName == "P"){
         speech = new SpeechSynthesisUtterance("Paragraph, " + e.target.textContent);
+        flag = 1;
+
       }
 
       
+      if(flag == 1){
 
-       //Speak at regular speed
-      if($_SESSION != null && $_SESSION['rate']){
+         //Speak at regular speed
+        if($_SESSION != null && $_SESSION['rate']){
 
-        speech.rate =  $_SESSION['rate'];
+          speech.rate =  $_SESSION['rate'];
+        }
+        else {
+          speech.rate = 1; 
+        }
+
+
+        if($_SESSION != null && $_SESSION['pitch']){
+
+          speech.pitch = $_SESSION['pitch'];
+        }
+
+
+        if($_SESSION != null && $_SESSION['voice']){
+         
+          for(i = 0; i < voices.length ; i++) {
+       
+            if(voices[i].name + ' (' + voices[i].lang + ')' === $_SESSION['voice']) {
+
+              speech.voice = voices[i];
+           
+            }
+          }    
+         
+        }
+        
+        console.log(speech);
+        speechSynthesis.speak(speech);
       }
-      else {
-        speech.rate = 1; 
-      }
-
-      if($_SESSION != null && $_SESSION['pitch']){
-
-        speech.pitch = $_SESSION['pitch'];
-      }
-
-      if($_SESSION != null && $_SESSION['voice']){
-       /*
-        for(i = 0; i < voices.length ; i++) {
-     
-          if(voices[i].name + ' (' + voices[i].lang + ')' === $_SESSION['voice']) {
-
-             speech.voice = voices[i];
-            console.log(speech.voice);
-          }
-        }    
-        */
-      
-        speech.voice = $_SESSION['voice']; 
-      
-
-      }
-
-       speechSynthesis.speak(speech);
 
     }
 
@@ -161,16 +171,6 @@ function speechOnload(e) {
     }
   }
 
-  /*
-    document.addEventListener('keydown', function (e) {
-          if(speechSynthesis.speaking){
-
-          speech_stop();
-      
-          }
-        }, false);
-  */
-    
 
     var all = document.getElementsByTagName("*");
 
