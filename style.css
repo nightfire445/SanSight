@@ -50,7 +50,16 @@ footer {
 #main{
   margin-left: 20px;
 }
-
+#form-wrapper{
+  width: 40%;
+  margin: 0 auto;
+}
+#name, #password{
+  width: 300%;
+}
+#submit{
+  width: 30%;
+}
 
 .optionsRow{
 	margin: 30px;

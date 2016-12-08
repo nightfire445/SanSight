@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SANSIGHT</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+  </head>
+
+<body>
+  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span> Register/Log In <i class="fa fa-bars"></i>
+        </button>
+        <img src="sansightlogo.png" id="logo">
+        <a class="navbar-brand page-scroll" href="#">SANSIGHT</a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!--
+  <form action="login.php" method="post" id="logout-form" class="medium-6 columns">
+    <section>
+    <h1 >Log Out</h1>
+    </section>
+    <section>
+    <input id="submit" class="button expanded" type = "submit" name="logout" value="logout" />
+    </section>
+  </form>
+  -->
+  
+  <div id="form-wrapper">
+    <form action="login.php" method="post" id="login-form" onsubmit="return validate_login(this);">
+      <h2 class="title">Log In</h2>
+        <div class="form-group">
+          <section>
+            <label for="name">
+              <input type="text" placeholder="Username" class="form-control" name="username" id="name" />
+            </label>
+          </section>
+        </div>
+
+      <div class="form-group">
+        <section >
+          <label for="password">
+          <input type="password" placeholder="Password" class="form-control" name="password" id="password" />
+          </label>
+        </section>
+      </div>
+      <button id="submit" type="submit" class="btn btn-default" name="login" value="Login">Log In</button>
+    </form>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p class="text-muted">@2016 SANSIGHT</p>
+    </div>
+  </footer>
+</body>
+</html>
