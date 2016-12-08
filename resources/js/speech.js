@@ -34,12 +34,12 @@ function speech_onFocus(e) {
         speech = new SpeechSynthesisUtterance("Select " + e.target.options[ e.target.selectedIndex ].value);
       }
 
-      console.log($_SESSION);
+      
       var voices = window.speechSynthesis.getVoices();
 
 
       //Speak at fast speed; "Earcon"
-      if($_SESSION['rate']){
+      if($_SESSION != null && $_SESSION['rate']){
         
         speech.rate = 4 * $_SESSION['rate'];
       }
@@ -48,16 +48,26 @@ function speech_onFocus(e) {
       }
  
 
-      if($_SESSION['pitch']){
+      if($_SESSION != null && $_SESSION['pitch']){
 
         speech.pitch = $_SESSION['pitch'];
       }
   
-      if($_SESSION['voice']){
+      if($_SESSION != null && $_SESSION['voice']){
+        
+        
         speech.voice = $_SESSION['voice']; 
-
+        /*
+        for(i = 0; i < voices.length ; i++) {
+        
+          if(voices[i].name + ' (' + voices[i].lang + ')' === $_SESSION['voice']) {
+             speech.voice = voices[i];
+             
+          }
+        }    
+        */
       }
-
+      speech_stop();
 
       speechSynthesis.speak(speech);   
 
@@ -69,7 +79,7 @@ function speech_onFocus(e) {
       
 
        //Speak at regular speed
-      if($_SESSION['rate']){
+      if($_SESSION != null && $_SESSION['rate']){
 
         speech.rate =  $_SESSION['rate'];
       }
@@ -77,21 +87,23 @@ function speech_onFocus(e) {
         speech.rate = 1; 
       }
 
-      if($_SESSION['pitch']){
+      if($_SESSION != null && $_SESSION['pitch']){
 
         speech.pitch = $_SESSION['pitch'];
       }
 
-      if($_SESSION['voice']){
-        /*
-       
+      if($_SESSION != null && $_SESSION['voice']){
+       /*
         for(i = 0; i < voices.length ; i++) {
      
-          if(voices[i].name === $_SESSION['voice']) {
+          if(voices[i].name + ' (' + voices[i].lang + ')' === $_SESSION['voice']) {
+
              speech.voice = voices[i];
+            console.log(speech.voice);
           }
         }    
-      */
+        */
+      
         speech.voice = $_SESSION['voice']; 
       
 
