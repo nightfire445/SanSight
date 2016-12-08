@@ -42,9 +42,10 @@ $( document ).ready(function() {
 
 
 
-                     //ctrl, replay focused element
+                     //ctrl, replay focused element DOESNT WORK IN IFRAME :'(
                     else if(e.keyCode == 17){
-                        $focused = $(':focus');
+                        focused = document.getElementsByTagName("iframe")[0].contentWindow.document.activeElement;
+                        $focused = $(focused);
                         $focused.blur(); 
                         $focused.focus();
 
