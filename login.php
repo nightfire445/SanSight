@@ -87,6 +87,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SANSIGHT</title>
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
   <script>var $_POST = <?php echo !empty($_POST)?json_encode($_POST):'null';?>; </script>
@@ -152,9 +153,5 @@
 
    <?php endif; ?>
 
- <!-- foundation required function call -->
-  <script>
-    $(document).foundation();
-  </script>
 </body>
 </html>
