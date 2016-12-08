@@ -2,7 +2,6 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-require ('simple_html_dom.php');
 include ('site_builder_functions.php');
 
 //if We Posted

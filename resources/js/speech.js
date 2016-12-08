@@ -44,7 +44,7 @@ function speech_onFocus(e) {
       if(flag == 0){
 
         //Speak at fast speed; "Earcon"
-        if($_SESSION != null && $_SESSION['rate']){
+        if(typeof $_SESSION != 'undefined' && $_SESSION['rate']){
           
           speech.rate = 4 * $_SESSION['rate'];
         }
@@ -53,13 +53,13 @@ function speech_onFocus(e) {
         }
    
 
-        if($_SESSION != null && $_SESSION['pitch']){
+        if(typeof $_SESSION != 'undefined' && $_SESSION['pitch']){
 
           speech.pitch = $_SESSION['pitch'];
         }
         
 
-        if($_SESSION != null && $_SESSION['voice']){
+        if(typeof $_SESSION != 'undefined' && $_SESSION['voice']){
           
           
           for(i = 0; i < voices.length ; i++) {
@@ -89,7 +89,7 @@ function speech_onFocus(e) {
       if(flag == 1){
 
          //Speak at regular speed
-        if($_SESSION != null && $_SESSION['rate']){
+        if( typeof $_SESSION != 'undefined' && $_SESSION['rate']){
 
           speech.rate =  $_SESSION['rate'];
         }
@@ -98,13 +98,13 @@ function speech_onFocus(e) {
         }
 
 
-        if($_SESSION != null && $_SESSION['pitch']){
+        if(typeof $_SESSION != 'undefined' && $_SESSION['pitch']){
 
           speech.pitch = $_SESSION['pitch'];
         }
 
 
-        if($_SESSION != null && $_SESSION['voice']){
+        if(typeof $_SESSION != 'undefined' && $_SESSION['voice']){
          
           for(i = 0; i < voices.length ; i++) {
        
@@ -116,7 +116,7 @@ function speech_onFocus(e) {
           }    
          
         }
-        
+
         console.log(speech);
         speechSynthesis.speak(speech);
       }
