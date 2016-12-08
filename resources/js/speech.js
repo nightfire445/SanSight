@@ -13,6 +13,7 @@ function speech_stop(){
 function speech_onFocus(e) {
       var flag;
       speech_stop();
+
       var speech = new SpeechSynthesisUtterance();
 
       //Rendering cases based on tag
@@ -46,7 +47,7 @@ function speech_onFocus(e) {
         //Speak at fast speed; "Earcon"
         if(typeof $_SESSION != 'undefined' && $_SESSION['rate']){
           
-          speech.rate = 4 * $_SESSION['rate'];
+          speech.rate = 2 * $_SESSION['rate'];
         }
         else {
           speech.rate = 12; 
@@ -73,6 +74,8 @@ function speech_onFocus(e) {
 
         console.log(speech);
         speechSynthesis.speak(speech);   
+        speech.rate = 1;
+        speechSynthesis.speak(speech);
 
       }
 
@@ -117,11 +120,11 @@ function speech_onFocus(e) {
          
         }
 
-        console.log(speech);
+        //console.log(speech);
         speechSynthesis.speak(speech);
       }
 
-    }
+}
 
 
 //Referenced: http://www.htmlgoodies.com/beyond/javascript/article.php/3724571/Using-Multiple-JavaScript-Onload-Functions.htm
