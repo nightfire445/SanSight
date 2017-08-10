@@ -45,7 +45,7 @@ function speech_onFocus(e) {
       if(flag == 0){
 
         //Speak at fast speed; "Earcon"
-        if(typeof $_SESSION != 'undefined' && ('rate' in $_SESSION) && $_SESSION['rate']){
+        if(typeof $_SESSION != 'null' && $_SESSION['rate']){
           
           speech.rate = 2 * $_SESSION['rate'];
         }
@@ -92,7 +92,7 @@ function speech_onFocus(e) {
       if(flag == 1){
 
          //Speak at regular speed
-        if( typeof  $_SESSION != 'undefined' && ('rate' in $_SESSION) && $_SESSION['rate']){
+        if( typeof  $_SESSION != 'null' && $_SESSION['rate']){
 
           speech.rate =  $_SESSION['rate'];
         }
