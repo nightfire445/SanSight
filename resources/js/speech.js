@@ -92,7 +92,7 @@ function speech_onFocus(e) {
       if(flag == 1){
 
          //Speak at regular speed
-        if( typeof $_SESSION != 'undefined' && $_SESSION['rate']){
+        if( typeof  $_SESSION != 'undefined' && $_SESSION['rate'] != 'undefined' && $_SESSION['rate']){
 
           speech.rate =  $_SESSION['rate'];
         }
