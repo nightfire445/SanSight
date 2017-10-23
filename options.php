@@ -4,17 +4,13 @@
     session_start();
   }
 
-  require ('config.php');
+  require_once 'connect.php'
   include ('site_builder_functions.php');
 
 
   try{
-    $servername = $config['DB_HOST'];
-    $username = $config['DB_USERNAME'];
-    $password = $config['DB_PASSWORD'];
-    $dbname = $config['DB_NAME'];
 
-    $dbconn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $dbconn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
   }
   
   catch (Exception $e){

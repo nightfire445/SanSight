@@ -3,17 +3,11 @@
     session_start();
   }
 
-  include('config.php');
+  require_once 'connect.php';
   include ('site_builder_functions.php');
 
   try{
-
-    $host = $config['DB_HOST'];
-    $user =  $config['DB_USERNAME'];
-    $pass = $config['DB_PASSWORD'];
-    $dbname = $config['DB_NAME'];
-    
-    $dbconn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+    $dbconn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
 
 
   }
@@ -56,9 +50,9 @@
     $stmt->execute(array(':username' => $_POST['username'], ':password' => $hashed_salt));
 
     //If the login is successful
-    if ($user = $stmt->fetch()){
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['uid'] = $user['id'];
+    if ($username = $stmt->fetch()){
+        $_SESSION['username'] = $username['username'];
+        $_SESSION['uid'] = $username['id'];
        
         $msg = 'Succesfully Logged in';
         header('Location: home.php');

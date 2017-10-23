@@ -2,19 +2,14 @@
 
 <?php
   // Creates sansSight Database and creates the user and history table if it doesn't already exist.
-	require 'config.php';
+  require_once 'connect.php'
   	
   try{
-    $servername = $config['DB_HOST'];
-   	$username = $config['DB_USERNAME'];
-  	$password = $config['DB_PASSWORD'];
-  	$dbname = $config['DB_NAME'];
-
-    $dbh = new PDO("mysql:host=$servername;", $username, $password);
+    $dbh = new PDO("mysql:host=$hostname;", $username, $password);
   	$sql = "CREATE DATABASE IF NOT EXISTS `sansSight`;";
   	$dbh->exec($sql);
 
-  	$dbconn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  	$dbconn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
 
 
     $create_users = "CREATE TABLE IF NOT EXISTS users (

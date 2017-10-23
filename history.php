@@ -3,18 +3,18 @@
     session_start();
   }
 
-  include('config.php');
+  require_once 'connect.php'
   include ('site_builder_functions.php');
   try{
 
     
-    $host = $config['DB_HOST'];
-    $user =  $config['DB_USERNAME'];
-    $pass = $config['DB_PASSWORD'];
-    $dbname = $config['DB_NAME'];
+    $hostname = $config['DB_HOST'];
+    $username =  $config['DB_USERNAME'];
+    $pasword = $config['DB_PASSWORD'];
+    $database = $config['DB_NAME'];
     
     
-    $dbconn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+    $dbconn = new PDO("mysql:host=$hostname;dbname=$database", $username, $pasword);
   }
 
   catch (Exception $e){
@@ -104,10 +104,10 @@
         
 
      <?php else: //Redirect to Login
-      $host  = $_SERVER['HTTP_HOST'];
+      $hostname  = $_SERVER['HTTP_HOST'];
       $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
       $extra = 'login.php';
-      header("Location: http://$host$uri/$extra"); 
+      header("Location: http://$hostname$uri/$extra"); 
       ?>
       
 

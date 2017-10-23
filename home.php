@@ -10,16 +10,16 @@ if(isset($_POST['URL'])){
   //if Logged in
   if(isset($_SESSION['username']) ){
 
-    $configs = include('config.php');
+    require_once 'connect.php'
     try{
 
 
-      $host = $config['DB_HOST'];
-      $user = $config['DB_USERNAME'];
-      $pass = $config['DB_PASSWORD'];
-      $dbname = $config['DB_NAME'];
+      $hostname = $config['DB_HOST'];
+      $username = $config['DB_USERNAME'];
+      $password = $config['DB_PASSWORD'];
+      $database = $config['DB_NAME'];
         
-      $dbconn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+      $dbconn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
     }
 
     catch (Exception $e){
