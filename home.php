@@ -10,7 +10,7 @@ if(isset($_POST['URL'])){
   //if Logged in
   if(isset($_SESSION['username']) ){
 
-    require_once 'connect.php'
+    require_once 'connect.php';
     try{
 
 

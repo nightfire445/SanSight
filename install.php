@@ -2,7 +2,7 @@
 
 <?php
   // Creates sansSight Database and creates the user and history table if it doesn't already exist.
-  require_once 'connect.php'
+  require_once 'connect.php';
   	
   try{
     $dbh = new PDO("mysql:host=$hostname;", $username, $password);
